@@ -1,0 +1,43 @@
+name: LobbyPlugin
+version: ${version}
+main: com.mmhq.lobby.LobbyPlugin
+description: Admin commands to control Murder Mystery games on mm1 server
+authors: [MMHQ]
+
+commands:
+  prepare_mm1:
+    description: Prepare a game on mm1 with the specified map (hard reset)
+    usage: /prepare_mm1 <map>
+    permission: mm.lobby.prepare
+    aliases: [pm1]
+  openjoin_mm1:
+    description: Open joining on mm1 (allow players to connect)
+    usage: /openjoin_mm1
+    permission: mm.lobby.prepare
+    aliases: [oj1]
+  closejoin_mm1:
+    description: Close joining on mm1 (prevent new players)
+    usage: /closejoin_mm1
+    permission: mm.lobby.prepare
+    aliases: [cj1]
+  game_status:
+    description: Query the current game status on mm1
+    usage: /game_status
+    permission: mm.lobby.status
+    aliases: [gstatus]
+  reset_game:
+    description: Reset the game arena on mm1
+    usage: /reset_game
+    permission: mm.lobby.reset
+    aliases: [rgame]
+
+permissions:
+  mm.lobby.prepare:
+    description: Allow player to prepare games on mm1
+    default: op
+  mm.lobby.status:
+    description: Allow player to query game status
+    default: op
+  mm.lobby.reset:
+    description: Allow player to reset game arena
+    default: op

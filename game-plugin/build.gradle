@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+dependencies {
+    implementation project(':shared-api')
+    compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
+    compileOnly 'com.viaversion:viaversion-api:4.9.2'
+    // PacketEvents is a soft dependency - loaded via reflection at runtime
+}
+
+processResources {
+    filteringCharset = 'UTF-8'
+    filesMatching('plugin.yml') {
+        expand('version': project.version)
+    }
+}
+
+shadowJar {
+    archiveClassifier.set('')
+    dependencies {
+        include(project(':shared-api'))
+    }
+}
+
+build.dependsOn shadowJar

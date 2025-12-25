@@ -1,0 +1,169 @@
+preset:
+  default:
+    minPlayers: 4
+    maxPlayers: 16
+    countdownSeconds: 20
+    roundMinutes: 5
+    map: AncientTomb
+    lobbySpawn:
+      world: world
+      x: 1.5
+      y: 72
+      z: 0.5
+      yaw: 0.0
+      pitch: 0.0
+    lobbySpawnOffsetY: 5.0
+    preGameLobbySpawn:
+      world: map_ancient_tomb
+      x: 42.5
+      y: 107.0
+      z: 20.5
+      yaw: 0.0
+      pitch: 0.0
+
+# Arena reset system configuration
+arena:
+  activeWorld: mm_active
+  lobbyServerName: lobby
+
+maps:
+  AncientTomb:
+    templateWorld: map_ancient_tomb
+    waiting: { x: 42.5, y: 107.0, z: 20.5, yaw: 0.0, pitch: 0.0 }
+    spectator: { x: 42.5, y: 120, z: 20.5, yaw: 0.0, pitch: 0.0 }
+    spawns:
+      0: { x: 50.5, y: 105, z: 5.5, yaw: 0.0, pitch: 0.0 }
+      1: { x: 58.5, y: 105, z: 20.5, yaw: 0.0, pitch: 0.0 }
+      2: { x: 61.5, y: 111, z: 36.5, yaw: 0.0, pitch: 0.0 }
+      3: { x: 50.5, y: 105, z: 37.5, yaw: 0.0, pitch: 0.0 }
+      4: { x: 41.5, y: 105, z: 37.5, yaw: 0.0, pitch: 0.0 }
+      5: { x: 32.5, y: 105, z: 33.5, yaw: 0.0, pitch: 0.0 }
+      6: { x: 21.5, y: 114, z: 12.5, yaw: 0.0, pitch: 0.0 }
+      7: { x: 31.5, y: 113, z: 20.5, yaw: 0.0, pitch: 0.0 }
+      8: { x: 47.5, y: 114, z: 13.5, yaw: 0.0, pitch: 0.0 }
+      9: { x: 63.5, y: 114, z: 28.5, yaw: 0.0, pitch: 0.0 }
+      10: { x: 27.5, y: 114, z: 30.5, yaw: 0.0, pitch: 0.0 }
+      11: { x: 41.5, y: 105, z: 19.5, yaw: 0.0, pitch: 0.0 }
+      12: { x: 51.5, y: 108, z: 18.5, yaw: 0.0, pitch: 0.0 }
+      13: { x: 34.5, y: 105, z: 11.5, yaw: 0.0, pitch: 0.0 }
+      14: { x: 21.5, y: 105, z: 20.5, yaw: 0.0, pitch: 0.0 }
+      15: { x: 6.5, y: 104, z: 24.5, yaw: 0.0, pitch: 0.0 }
+      16: { x: 27.5, y: 97, z: 25.5, yaw: 0.0, pitch: 0.0 }
+      17: { x: 31.5, y: 97, z: 10.5, yaw: 0.0, pitch: 0.0 }
+      18: { x: 27.5, y: 106, z: 0.5, yaw: 0.0, pitch: 0.0 }
+      19: { x: 42.5, y: 97, z: 21.5, yaw: 0.0, pitch: 0.0 }
+      20: { x: 62.5, y: 97, z: 20.5, yaw: 0.0, pitch: 0.0 }
+      21: { x: 57.5, y: 97, z: 42.5, yaw: 0.0, pitch: 0.0 }
+      22: { x: 42.5, y: 97, z: 35.5, yaw: 0.0, pitch: 0.0 }
+      23: { x: 42.5, y: 94, z: -1.5, yaw: 0.0, pitch: 0.0 }
+      24: { x: 42.5, y: 97, z: 4.5, yaw: 0.0, pitch: 0.0 }
+      25: { x: 27.5, y: 97, z: 40.5, yaw: 0.0, pitch: 0.0 }
+      26: { x: 51.5, y: 97, z: 27.5, yaw: 0.0, pitch: 0.0 }
+      27: { x: 39.5, y: 94, z: 20.5, yaw: 0.0, pitch: 0.0 }
+      28: { x: 26.5, y: 105, z: 42.5, yaw: 0.0, pitch: 0.0 }
+      29: { x: 46.5, y: 105, z: 28.5, yaw: 0.0, pitch: 0.0 }
+      30: { x: 42.5, y: 105, z: 10.5, yaw: 0.0, pitch: 0.0 }
+      31: { x: 57.5, y: 97, z: 0.5, yaw: 0.0, pitch: 0.0 }
+      32: { x: 51.5, y: 107, z: 10.5, yaw: 0.0, pitch: 0.0 }
+      33: { x: 55.5, y: 110, z: 42.5, yaw: 0.0, pitch: 0.0 }
+      34: { x: 49.5, y: 114, z: 27.5, yaw: 0.0, pitch: 0.0 }
+      35: { x: 59.5, y: 105, z: -1.5, yaw: 0.0, pitch: 0.0 }
+      36: { x: 42.5, y: 105, z: 2.5, yaw: 0.0, pitch: 0.0 }
+      37: { x: 62.5, y: 117, z: 20.5, yaw: 0.0, pitch: 0.0 }
+      38: { x: 75.5, y: 109, z: 27.5, yaw: 0.0, pitch: 0.0 }
+      39: { x: 75.5, y: 105, z: 15.5, yaw: 0.0, pitch: 0.0 }
+    spectator: { x: 42.5, y: 120, z: 20.5, yaw: 0.0, pitch: 0.0 }
+  HypixelWorld:
+    templateWorld: map_hypixel_world
+    waiting: { x: 0.5, y: 65, z: 62.5, yaw: -180.0, pitch: 0.0 }
+    spectator: { x: 0.5, y: 85, z: 0.5, yaw: 0.0, pitch: 0.0 }
+    spawns:
+      0: { x: 0.5, y: 68, z: 6.5, yaw: 0.0, pitch: 0.0 }
+      1: { x: -14.5, y: 68, z: 0.5, yaw: 0.0, pitch: 0.0 }
+      2: { x: -34.5, y: 65, z: 11.5, yaw: 0.0, pitch: 0.0 }
+      3: { x: -29.5, y: 65, z: 19.5, yaw: 0.0, pitch: 0.0 }
+      4: { x: -35.5, y: 72, z: 36.5, yaw: 0.0, pitch: 0.0 }
+      5: { x: -57.5, y: 61, z: 12.5, yaw: 0.0, pitch: 0.0 }
+      6: { x: -37.5, y: 65, z: 0.5, yaw: 0.0, pitch: 0.0 }
+      7: { x: -38.5, y: 65, z: -16.5, yaw: 0.0, pitch: 0.0 }
+      8: { x: -53.5, y: 68, z: -16.5, yaw: 0.0, pitch: 0.0 }
+      9: { x: -66.5, y: 68, z: 0.5, yaw: 0.0, pitch: 0.0 }
+      10: { x: -53.5, y: 68, z: 0.5, yaw: 0.0, pitch: 0.0 }
+      11: { x: -23.5, y: 65, z: -13.5, yaw: 0.0, pitch: 0.0 }
+      12: { x: -7.5, y: 65, z: -27.5, yaw: 0.0, pitch: 0.0 }
+      13: { x: -7.5, y: 65, z: -43.5, yaw: 0.0, pitch: 0.0 }
+      14: { x: 0.5, y: 69, z: -65.5, yaw: 0.0, pitch: 0.0 }
+      15: { x: 0.5, y: 68, z: -6.5, yaw: 0.0, pitch: 0.0 }
+      16: { x: 0.5, y: 65, z: -26.5, yaw: 0.0, pitch: 0.0 }
+      17: { x: 8.5, y: 65, z: -40.5, yaw: 0.0, pitch: 0.0 }
+      18: { x: 13.5, y: 69, z: -64.5, yaw: 0.0, pitch: 0.0 }
+      19: { x: 25.5, y: 65, z: -21.5, yaw: 0.0, pitch: 0.0 }
+      20: { x: 19.5, y: 72, z: -39.5, yaw: 0.0, pitch: 0.0 }
+      21: { x: 45.5, y: 65, z: -19.5, yaw: 0.0, pitch: 0.0 }
+      22: { x: 49.5, y: 65, z: -23.5, yaw: 0.0, pitch: 0.0 }
+      23: { x: 49.5, y: 65, z: 4.5, yaw: 0.0, pitch: 0.0 }
+      24: { x: 40.5, y: 65, z: -3.5, yaw: 0.0, pitch: 0.0 }
+      25: { x: 32.5, y: 65, z: -9.5, yaw: 0.0, pitch: 0.0 }
+      26: { x: 8.5, y: 68, z: 0.5, yaw: 0.0, pitch: 0.0 }
+      27: { x: 6.5, y: 65, z: 41.5, yaw: 0.0, pitch: 0.0 }
+      28: { x: 0.5, y: 65, z: 26.5, yaw: 0.0, pitch: 0.0 }
+      29: { x: 17.5, y: 65, z: 34.5, yaw: 0.0, pitch: 0.0 }
+      30: { x: 30.5, y: 65, z: 28.5, yaw: 0.0, pitch: 0.0 }
+      31: { x: 32.5, y: 65, z: 13.5, yaw: 0.0, pitch: 0.0 }
+    spectator: { x: 0.5, y: 85, z: 0.5, yaw: 0.0, pitch: 0.0 }
+  Subway:
+    templateWorld: map_subway
+    waiting: { x: 0.5, y: 86.0, z: -74.5, yaw: 0.0, pitch: 0.0 }
+    spectator: { x: 0.5, y: 110, z: 0.5, yaw: 0.0, pitch: 0.0 }
+    spawns:
+      0: { x: 5.5, y: 97, z: -2.5, yaw: 0.0, pitch: 0.0 }
+      1: { x: -3.5, y: 97, z: -2.5, yaw: 0.0, pitch: 0.0 }
+      2: { x: -9.5, y: 97, z: -16.5, yaw: 0.0, pitch: 0.0 }
+      3: { x: 3.5, y: 97, z: -33.5, yaw: 0.0, pitch: 0.0 }
+      4: { x: 23.5, y: 91, z: -34.5, yaw: 0.0, pitch: 0.0 }
+      5: { x: 18.5, y: 86, z: -20.5, yaw: 0.0, pitch: 0.0 }
+      6: { x: 5.5, y: 87, z: -25.5, yaw: 0.0, pitch: 0.0 }
+      7: { x: -5.5, y: 86, z: -24.5, yaw: 0.0, pitch: 0.0 }
+      8: { x: -21.5, y: 86, z: -4.5, yaw: 0.0, pitch: 0.0 }
+      9: { x: -17.5, y: 86, z: 17.5, yaw: 0.0, pitch: 0.0 }
+      10: { x: -29.5, y: 86, z: 22.5, yaw: 0.0, pitch: 0.0 }
+      11: { x: -22.5, y: 91, z: 30.5, yaw: 0.0, pitch: 0.0 }
+      12: { x: -7.5, y: 97, z: 24.5, yaw: 0.0, pitch: 0.0 }
+      13: { x: 0.5, y: 97, z: 11.5, yaw: 0.0, pitch: 0.0 }
+      14: { x: 15.5, y: 97, z: 20.5, yaw: 0.0, pitch: 0.0 }
+      15: { x: 5.5, y: 97, z: 35.5, yaw: 0.0, pitch: 0.0 }
+      16: { x: 24.5, y: 91, z: 30.5, yaw: 0.0, pitch: 0.0 }
+      17: { x: 36.5, y: 99, z: 24.5, yaw: 0.0, pitch: 0.0 }
+      18: { x: 30.5, y: 99, z: 20.0, yaw: 0.0, pitch: 0.0 }
+      19: { x: 43.5, y: 99, z: 12.5, yaw: 0.0, pitch: 0.0 }
+      20: { x: 49.5, y: 96, z: 30.5, yaw: 0.0, pitch: 0.0 }
+      21: { x: 51.5, y: 99, z: 5.5, yaw: 0.0, pitch: 0.0 }
+      22: { x: 43.5, y: 99, z: 0.5, yaw: 0.0, pitch: 0.0 }
+      23: { x: 33.5, y: 99, z: 5.5, yaw: 0.0, pitch: 0.0 }
+      24: { x: 34.5, y: 99, z: -8.5, yaw: 0.0, pitch: 0.0 }
+      25: { x: 49.5, y: 96, z: -19.5, yaw: 0.0, pitch: 0.0 }
+      26: { x: 24.5, y: 91, z: -19.5, yaw: 0.0, pitch: 0.0 }
+      27: { x: 19.5, y: 86, z: -10.5, yaw: 0.0, pitch: 0.0 }
+      28: { x: 0.5, y: 86, z: -13.5, yaw: 0.0, pitch: 0.0 }
+      29: { x: -17.5, y: 86, z: -20.5, yaw: 0.0, pitch: 0.0 }
+      30: { x: -22.5, y: 91, z: -33.5, yaw: 0.0, pitch: 0.0 }
+      31: { x: -4.5, y: 97, z: -25.5, yaw: 0.0, pitch: 0.0 }
+      32: { x: 16.5, y: 97, z: -9.0, yaw: 0.0, pitch: 0.0 }
+      33: { x: 15.5, y: 97, z: -28.5, yaw: 0.0, pitch: 0.0 }
+      34: { x: 0.5, y: 86, z: -0.5, yaw: 0.0, pitch: 0.0 }
+      35: { x: 0.5, y: 86, z: 11.5, yaw: 0.0, pitch: 0.0 }
+    spectator: { x: 0.5, y: 110, z: 0.5, yaw: 0.0, pitch: 0.0 }
+announcements:
+  start: "Round starting soon"
+  win: "{winner} wins!"
+notes:
+  viaVersion: "Ensure ViaVersion is present on proxy and game servers for mixed-client compatibility (1.8.8)."
+
+# Murderer knife (hitscan) settings
+knife:
+  # Maximum raycast distance (blocks)
+  maxRange: 25.0
+  # Raycast step size (smaller = more precise, higher CPU)
+  step: 0.2
+  # Cooldown in milliseconds between throws
+  cooldownMs: 500

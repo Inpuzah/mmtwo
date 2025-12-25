@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Main-Class: com.mmhq.proxy.MmProxyPlugin
+Implementation-Title: MMHQ-Murder-Proxy
+Implementation-Version: 0.1.0-SNAPSHOT
+

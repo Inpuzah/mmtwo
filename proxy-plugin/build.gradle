@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+dependencies {
+    implementation project(':shared-api')
+    compileOnly 'com.velocitypowered:velocity-api:3.1.1'
+    annotationProcessor 'com.velocitypowered:velocity-api:3.1.1'
+    compileOnly 'com.viaversion:viaversion-common:4.9.2'
+}
+
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'com.mmhq.proxy.MmProxyPlugin',
+            'Implementation-Title': 'MMHQ-Murder-Proxy',
+            'Implementation-Version': project.version
+        )
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+shadowJar {
+    archiveClassifier.set('')
+    dependencies {
+        include(project(':shared-api'))
+    }
+}
+
+build.dependsOn shadowJar

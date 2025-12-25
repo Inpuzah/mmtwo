@@ -1,0 +1,9 @@
+{
+  "id": "mmhq-murder-proxy",
+  "name": "MMHQ Murder Proxy",
+  "version": "0.1.0-SNAPSHOT",
+  "main": "com.mmhq.proxy.MmProxyPlugin",
+  "authors": ["mmhq"],
+  "dependencies": [],
+  "license": "MIT"
+}

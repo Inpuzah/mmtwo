@@ -1,0 +1,38 @@
+name: MMHQMurderGame
+main: com.mmhq.game.MmGamePlugin
+version: 0.1.0-SNAPSHOT
+author: MMHQ
+description: Murder Mystery game plugin for Paper/Spigot servers (1.8.9 - 1.21 via ViaVersion)
+api-version: "1.13"
+depend:
+  - ViaVersion
+softdepend:
+  - Corpse
+commands:
+  mmjoin:
+    description: Join a Murder Mystery queue.
+  mmleave:
+    description: Leave the current Murder Mystery queue.
+  mmstart:
+    description: Force start the current round.
+  mmmap:
+    description: Force the next round's map.
+  mmknifetest:
+    description: Toggle hitscan knife testing in lobby.
+  mmcorpse:
+    description: "[DEV] Test corpse spawning - /mmcorpse [playerName]"
+  mmarena:
+    description: "[DEV] Check arena debug status - /mmarena"
+permissions:
+  mm.start:
+    description: Allows forcing the round start.
+    default: op
+  mm.map:
+    description: Allows changing the map.
+    default: op
+  mm.knifetest:
+    description: Allows toggling hitscan knife testing.
+    default: op
+  mm.debug:
+    description: Allows checking arena debug info.
+    default: op

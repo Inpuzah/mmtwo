@@ -1,0 +1,3 @@
+rootProject.name = 'mm-two'
+
+include 'shared-api', 'proxy-plugin', 'game-plugin', 'lobby-plugin'
