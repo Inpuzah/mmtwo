@@ -39,14 +39,15 @@ public final class MmGamePlugin extends JavaPlugin {
         this.gameManager = new GameManager(this, arenaManager);
 
         // Register plugin messaging channels
+        // Create ONE LobbyMessageListener instance
+        LobbyMessageListener lobbyListener = new LobbyMessageListener(this, arenaService, gameManager);
+        
         // BungeeCord channel for cross-server communication
         getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
-        getServer().getMessenger().registerIncomingPluginChannel(this, "BungeeCord", 
-                new LobbyMessageListener(this, arenaService));
+        getServer().getMessenger().registerIncomingPluginChannel(this, "BungeeCord", lobbyListener);
         
         // Control channel for direct messages (Velocity)
-        getServer().getMessenger().registerIncomingPluginChannel(this, Constants.PLUGIN_MESSAGE_CHANNEL_CONTROL,
-                new LobbyMessageListener(this, arenaService));
+        getServer().getMessenger().registerIncomingPluginChannel(this, Constants.PLUGIN_MESSAGE_CHANNEL_CONTROL, lobbyListener);
         getServer().getMessenger().registerOutgoingPluginChannel(this, Constants.PLUGIN_MESSAGE_CHANNEL_CONTROL);
         
         // Status channel for heartbeat publisher

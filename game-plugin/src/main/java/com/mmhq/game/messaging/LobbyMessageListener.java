@@ -2,8 +2,10 @@ package com.mmhq.game.messaging;
 
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
+import com.mmhq.game.GameManager;
 import com.mmhq.game.arena.ArenaService;
 import com.mmhq.sharedapi.Constants;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.PluginMessageListener;
@@ -18,10 +20,12 @@ import java.io.DataOutputStream;
 public final class LobbyMessageListener implements PluginMessageListener {
     private final JavaPlugin plugin;
     private final ArenaService arena;
+    private final GameManager gameManager;
 
-    public LobbyMessageListener(JavaPlugin plugin, ArenaService arena) {
+    public LobbyMessageListener(JavaPlugin plugin, ArenaService arena, GameManager gameManager) {
         this.plugin = plugin;
         this.arena = arena;
+        this.gameManager = gameManager;
     }
 
     @Override
@@ -92,7 +96,17 @@ public final class LobbyMessageListener implements PluginMessageListener {
             case "PREPARE": {
                 String mapId = in.readUTF();
                 plugin.getLogger().info("[Lobby->mm1] PREPARE map=" + mapId);
+                
+                // 1) Hard reset world via ArenaService
                 arena.prepare(mapId);
+                
+                // 2) After a short delay, bind the game to the prepared map/world
+                // (ArenaService loads worlds async; delay avoids world==null)
+                Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                    plugin.getLogger().info("[Lobby->mm1] Applying prepared map to game: " + mapId);
+                    gameManager.prepareGameWithMap(mapId);
+                }, 40L); // 2s delay
+                
                 break;
             }
             case "OPEN_JOIN":
@@ -113,6 +127,11 @@ public final class LobbyMessageListener implements PluginMessageListener {
                 if (arena.currentMapId() != null) {
                     arena.prepare(arena.currentMapId());
                 }
+                break;
+            case "START_MATCH":
+                plugin.getLogger().info("[Lobby->mm1] START_MATCH");
+                // Force start the game (if you want) or open joins
+                arena.setJoinOpen(true);
                 break;
             case "START_GAME": {
                 // Legacy support: treat START_GAME as PREPARE

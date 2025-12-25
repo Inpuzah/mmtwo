@@ -238,6 +238,20 @@ public final class MurderMysteryGame implements Listener {
         plugin.getLogger().info("[MM-QUEUE] Queue size after: " + queue.size());
     }
 
+    /**
+     * Add a player as a spectator (for late joiners during active game).
+     * They can watch but cannot interact with the game.
+     */
+    public void addSpectator(Player player) {
+        player.getInventory().clear();
+        player.setGameMode(GameMode.SPECTATOR);
+        // Teleport to waiting spawn or a safe spectator location
+        Location spectatorLoc = getWaitingSpawn();
+        player.teleport(spectatorLoc);
+        player.sendMessage(ChatColor.YELLOW + "Game in progress. You are spectating.");
+        plugin.getLogger().info("[MM-SPECTATOR] " + player.getName() + " joined as spectator");
+    }
+
     public void forceStart() {
         if (state == GameState.IN_GAME) {
             return;
@@ -1629,7 +1643,6 @@ public final class MurderMysteryGame implements Listener {
         alive.clear();
         murdererId = null;
         detectiveId = null;
-        currentMap = null;
         
         // Stop gold spawning and clear items
         if (goldSpawnManager != null) {
@@ -1671,6 +1684,9 @@ public final class MurderMysteryGame implements Listener {
                 plugin.getLogger().info("[MM-RESET] Cleared " + itemCount + " items from game world");
             }
         }
+        
+        // NOW null the map (after using it for cleanup)
+        currentMap = null;
         // Clear corpses each reset (safety if any remain)
         if (corpseManager != null) corpseManager.clearAll();
         

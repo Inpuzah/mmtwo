@@ -10,15 +10,14 @@ import com.mmhq.sharedapi.game.GameState;
 import com.mmhq.sharedapi.game.MatchPreset;
 import com.mmhq.sharedapi.player.PlayerProfile;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.ArrayList;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -76,18 +75,23 @@ public final class GameManager implements Listener {
     public void prepareGameWithMap(String mapName) {
         plugin.getLogger().info("[GameManager] Preparing game from lobby with map: " + mapName);
         
-        // Look up map from registry
-        MapDefinition map = mapRegistry.get(mapName);
+        // Look up template map from registry
+        MapDefinition template = mapRegistry.get(mapName);
         
-        if (map == null) {
+        if (template == null) {
             plugin.getLogger().warning("[GameManager] ✗ Map not found in registry: " + mapName);
             return;
         }
         
-        if (map.world() == null) {
-            plugin.getLogger().warning("[GameManager] ✗ World not found for map: " + mapName);
+        // Get the active world (should be mm_active)
+        World active = Bukkit.getWorld("mm_active");
+        if (active == null) {
+            plugin.getLogger().warning("[GameManager] ✗ Active world mm_active is not loaded yet!");
             return;
         }
+        
+        // Bind template spawns to mm_active
+        MapDefinition map = bindToActiveWorld(template, active);
         
         // Reset game state
         plugin.getLogger().info("[GameManager] Clearing queue and resetting game state");
@@ -99,7 +103,7 @@ public final class GameManager implements Listener {
         // Set arena to WAITING state (ready for players)
         arenaManager.setState(ArenaState.WAITING);
         
-        plugin.getLogger().info("[GameManager] ✓ Game prepared with map: " + mapName + " - READY FOR PLAYERS");
+        plugin.getLogger().info("[GameManager] ✓ Game prepared with map: " + mapName + " (bound to mm_active) - READY FOR PLAYERS");
     }
 
     public List<MapDefinition> maps() {
@@ -141,6 +145,40 @@ public final class GameManager implements Listener {
 
     // ===== Private Helpers =====
 
+    /**
+     * Bind a template MapDefinition to the active world.
+     * This ensures all spawn locations reference mm_active instead of template worlds.
+     */
+    private MapDefinition bindToActiveWorld(MapDefinition template, World activeWorld) {
+        if (template == null || activeWorld == null) return template;
+
+        Location waiting = template.waitingSpawn();
+        Location waitingBound = waiting == null ? null : new Location(
+                activeWorld,
+                waiting.getX(), waiting.getY(), waiting.getZ(),
+                waiting.getYaw(), waiting.getPitch()
+        );
+
+        List<Location> boundSpawns = new ArrayList<>();
+        for (Location l : template.gameSpawns()) {
+            if (l == null) continue;
+            boundSpawns.add(new Location(
+                    activeWorld,
+                    l.getX(), l.getY(), l.getZ(),
+                    l.getYaw(), l.getPitch()
+            ));
+        }
+
+        // IMPORTANT: worldName should be activeWorld.getName(), NOT template world name
+        return new MapDefinition(
+                template.name(),
+                activeWorld.getName(),
+                waitingBound,
+                boundSpawns,
+                null
+        );
+    }
+
     private List<MapDefinition> loadMaps(JavaPlugin plugin, MatchPreset defaultPreset) {
         List<MapDefinition> maps = new ArrayList<>();
         ConfigurationSection mapsSection = plugin.getConfig().getConfigurationSection("maps");
@@ -170,21 +208,6 @@ public final class GameManager implements Listener {
     }
 
     // ===== Event Listeners =====
-
-    @EventHandler
-    public void onJoin(PlayerJoinEvent event) {
-        GameState state = currentGame.state();
-        if (state == GameState.LOBBY || state == GameState.COUNTDOWN) {
-            queue(event.getPlayer());
-        } else {
-            // Block joins during active gameplay
-            event.getPlayer().kickPlayer(ChatColor.RED +
-                    "Game already in progress. Please wait for the next round.");
-        }
-    }
-
-    @EventHandler
-    public void onQuit(PlayerQuitEvent event) {
-        leave(event.getPlayer());
-    }
+    // REMOVED: onJoin/onQuit auto-queueing - now handled by ArenaJoinListener
+    // Players are routed through ArenaService first, which handles joinOpen gating
 }
